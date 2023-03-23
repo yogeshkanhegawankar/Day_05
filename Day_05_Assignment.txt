@@ -1,0 +1,218 @@
+Sequences Practice Problems
+
+1. Use Random function ((RANDOM)) to get Single digit
+==>
+echo $((RANDOM%10))
+$ bash RandomSingleDigit.sh
+2
+-----------------------------------------------------
+2.Use Random to get Dice Number between 1 to 6.
+==>
+#!/bin/bash
+
+function roll_dice {
+    min=1
+    max=6
+    number=$(expr $min + $RANDOM % $max)
+    echo $number
+}
+roll_dice
+
+
+$ bash RandomDice.sh
+4
+
+Yogesh@DESKTOP-729HECG MINGW64 ~ (main)
+$ bash RandomDice.sh
+4
+
+Yogesh@DESKTOP-729HECG MINGW64 ~ (main)
+$ bash RandomDice.sh
+1
+
+Yogesh@DESKTOP-729HECG MINGW64 ~ (main)
+$ bash RandomDice.sh
+6
+
+Yogesh@DESKTOP-729HECG MINGW64 ~ (main)
+$ bash RandomDice.sh
+3
+
+Yogesh@DESKTOP-729HECG MINGW64 ~ (main)
+$
+
+-----------------------------------------------------
+3. Add two Random Dice Number and Print the Result
+=>
+
+#!/bin/bash
+
+dice1=$((RANDOM%6))
+echo $dice1
+
+dice2=$((RANDOM%6))
+echo $dice2
+
+sum=$((dice1+dice2))
+echo $sum
+
+$ bash RandomDice.sh
+5
+1
+6
+-----------------------------------------------------
+4. Write a program that reads 5 Random 2 Digit values , then find their sum and the average 
+=>
+
+#!/bin/bash
+
+echo "Please enter your first number: "
+read a
+echo "Second number: "
+read b
+echo "Third number: "
+read c
+echo "Fourth number: "
+read d
+echo "Fifth number: "
+read e
+
+sum=$(($a + $b + $c + $d + $e))
+avg=$(($sum / 5))
+
+echo "The sum of these numbers is: " $sum
+echo "The average of these numbers is: " $avg
+
+
+$ bash RandomDice.sh
+Please enter your first number:
+11
+Second number:
+22
+Third number:
+33
+Fourth number:
+44
+Fifth number:
+55
+The sum of these numbers is:  165
+The average of these numbers is:  33
+----------------------------------------------------
+5. Unit Conversion
+
+a. 1ft = 12 in then 42 in = ? ft
+b. Rectangular Plot of 60 feet x 40 feet in meters
+c. Calculate area of 25 such plots in acres
+=>
+
+echo "enter a number to be converted"
+
+read number
+
+feet=$(($number*12))
+
+inches=$(($number/12))
+
+echo "feet conversion to inches="$feet
+
+echo "inches conversion to feet="$inches
+
+
+$ bash UnitConversion.sh
+enter a number to be converted
+12
+feet conversion to inches=144
+inches conversion to feet=1
+-----------------------------------------------------
+Selection Practice Problems with if & else
+
+1. Write a program that reads 5 Random 3 Digit values and then outputs the minimum
+and the maximum value
+=>
+
+#!/bin/bash
+
+read -a integers
+
+biggest=${integers[0]}
+smallest=${integers[0]}
+
+for i in ${integers[@]}
+do
+     if [[ $i -gt $biggest ]]
+     then
+        biggest="$i"
+     fi
+
+     if [[ $i -lt $smallest ]]
+     then
+        smallest="$i"
+     fi
+done
+
+echo "The largest number is $biggest"
+echo "The smallest number is $smallest"
+
+
+$ bash Max_Min.sh
+111 114 112 115 116
+The largest number is 116
+The smallest number is 111
+----------------------------------------------------
+2. Write a program that takes day and month from the command line and prints true ifday of month is between March 20 and June 20, false otherwise.
+=>
+
+
+
+-----------------------------------------------------
+3. Write a program that takes a year as input and outputs the Year is a Leap Year or not
+a Leap Year. A Leap Year checks for 4 Digit Number, Divisible by 4 and not 100 unless
+divisible by 400.
+=>
+
+echo -n "Enter year (YYYY): "
+read y
+a = 'expr $y%4'
+b = 'expr $y%100'
+c = 'expr $y%400'
+if [$a -eq 0 -a $b -ne 0 -o $c -eq 0]
+then 
+echo "$y is leap year"
+else
+echo "$y is not a leap year"
+
+fi
+
+
+
+
+$ bash LeapYear.sh
+Enter year (YYYY): 2025
+LeapYear.sh: line 3: a: command not found
+LeapYear.sh: line 4: b: command not found
+LeapYear.sh: line 5: c: command not found
+LeapYear.sh: line 6: [: missing `]'
+2025 is not a leap year
+
+----------------------------------------------------
+4. Write a program to simulate a coin flip and print out "Heads" or "Tails" accordingly.
+=>
+
+  GNU nano 7.1                      CoinFlip.sh
+#!/bin/bash
+FLIP=$(($(($RANDOM%10))%2))
+if [ $FLIP -eq 1 ];then
+    echo "heads"
+else
+    echo "tails"
+fi
+
+
+$ bash CoinFlip.sh
+heads
+
+Yogesh@DESKTOP-729HECG MINGW64 ~ (main)
+$ bash CoinFlip.sh 0
+tails
+-----------------------------------------------------
+
